@@ -7,15 +7,9 @@
 	"service": "devcontainer",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 	"features": {
-		"ghcr.io/devcontainers/features/node:1": {
-			"nodeGypDependencies": true,
-			"version": "18",
-			"nvmVersion": "0.39"
-		},
-		"ghcr.io/devcontainers/features/rust:1": {
-			"version": "1.70",
-			"profile": "minimal"
-		}
+		"ghcr.io/devcontainers/features/node:1": {},
+		"ghcr.io/devcontainers/features/rust:1": {},
+		"ghcr.io/devcontainers-contrib/features/ffmpeg-apt-get:1": {}
 	},
 	"customizations": {
 		"vscode": {
