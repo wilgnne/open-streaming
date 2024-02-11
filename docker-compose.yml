@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: web
+      args:
+        - NEXT_PUBLIC_STREAMING_URL=https://openstreaming-hls.wilgnne.dev/output.m3u8
+    ports:
+      - 3000:3000
+    networks:
+      - open-streaming
+      - traefik_public
+    labels:
+      - traefik.enable=true
+      - traefik.http.services.nginx.loadbalancer.server.port=3000
+      - traefik.http.routers.nginx.entrypoints=http
+      - traefik.http.routers.nginx.rule=Host(`openstreaming.wilgnne.dev`)
+
+  hls_streaming:
+    build:
+      context: hls_streaming
+    networks:
+      - open-streaming
+      - traefik_public
+    ports:
+      - 8080:8080
+    volumes:
+      - ./hls_streaming/Blender_4.0-Reel-(1080p).mp4:/source/input.mp4
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+    labels:
+      - traefik.enable=true
+      - traefik.http.services.nginx.loadbalancer.server.port=8080
+      - traefik.http.routers.nginx.entrypoints=http
+      - traefik.http.routers.nginx.rule=Host(`openstreaming-hls.wilgnne.dev`)
+
+networks:
+  open-streaming:
+  traefik_public:
+    external: true
