@@ -2,10 +2,7 @@ version: '3.8'
 
 services:
   web:
-    build:
-      context: web
-      args:
-        - NEXT_PUBLIC_STREAMING_URL=https://openstreaming-hls.wilgnne.dev/output.m3u8
+    image: wilgnne/openstreaming-web:latest
     restart: unless-stopped
     ports:
       - 3000:3000
@@ -19,8 +16,7 @@ services:
       - traefik.http.routers.nginx.rule=Host(`openstreaming.wilgnne.dev`)
 
   hls_streaming:
-    build:
-      context: hls_streaming
+    image: wilgnne/openstreaming-hls_streaming:latest
     restart: unless-stopped
     networks:
       - open-streaming
