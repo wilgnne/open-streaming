@@ -24,10 +24,10 @@ const HomePage: NextPage = () => {
         </Box>
         <Box pt={3}>
           <Typography level="h3" mt={1}>
-            Big Buck Bunny
+            Blender 4.0 Reel
           </Typography>
           <Typography level="body-lg" color="neutral">
-            An infinite Big Buck Bunny live stream
+            An infinite Blender 4.0 Reel live stream
             <br />
             Credits: Media files are © copyright Blender Foundation |{" "}
             <a href="https://www.blender.org" target="_blank">
