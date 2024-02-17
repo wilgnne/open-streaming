@@ -4,8 +4,6 @@ services:
   web:
     image: wilgnne/openstreaming-web:latest
     restart: unless-stopped
-    ports:
-      - 3000:3000
     networks:
       - open-streaming
       - traefik_public
@@ -21,8 +19,6 @@ services:
     networks:
       - open-streaming
       - traefik_public
-    ports:
-      - 8080:8080
     volumes:
       - ./hls_streaming/Blender_4.0-Reel-(1080p).mp4:/source/input.mp4
     deploy:
@@ -31,7 +27,7 @@ services:
           cpus: '0.2'
     labels:
       - traefik.enable=true
-      - traefik.http.services.openstreaming-hls_streaming.loadbalancer.server.port=8080
+      - traefik.http.services.openstreaming-hls_streaming.loadbalancer.server.port=80
       - traefik.http.routers.openstreaming-hls_streaming.entrypoints=http
       - traefik.http.routers.openstreaming-hls_streaming.rule=Host(`openstreaming-hls.wilgnne.dev`)
 
