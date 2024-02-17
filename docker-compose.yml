@@ -30,6 +30,7 @@ services:
 
   hls_streaming:
     image: linuxserver/ffmpeg:latest
+    restart: unless-stopped
     entrypoint: "ffmpeg -stream_loop -1 -re -i /input.mp4 -c copy -strict -2 -f hls -hls_time 1 -hls_list_size 15 -hls_flags delete_segments+append_list+split_by_time /hls_streaming/output.m3u8"
     volumes:
       - ./hls_streaming/Blender_4.0-Reel-(1080p).mp4:/input.mp4
